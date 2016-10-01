@@ -5,12 +5,14 @@ class Calculator{
 
     public function setOperations($equation){
         $this->equation = str_replace(' ', '', $equation);
+        //subtraction is simply adding a negative
         $this->equation = str_replace('-', '+-', $this->equation);
+        //division is technically just multiplying by the following
         $this->equation = str_replace('/', '*1/', $this->equation);
     }
 
     public function runCalculation(){
-        //$this->prefix;
+        //first multply and divide, then add and subtract
         $allowedOpperands = ['*','+'];
         $lastVal = null;
         foreach ($allowedOpperands as $opperand) {
@@ -22,13 +24,9 @@ class Calculator{
                 }else{
                     $lastVal = 0;
                 }
-
                 $token = strtok($opperand);
-
-
             }
         }
-
         $this->answer = $lastVal;
     }
 
